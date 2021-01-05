@@ -1,0 +1,71 @@
+npm install webpack --save-dev
+npm i -D webpack-cli
+npm install webpack-dev-server --save-dev
+
+en vez de css utilizamos sass que es superior en proyectos grandes
+
+npm install style-loader css-loader sass-loader --save-dev
+npm install --save-dev file-loader
+npm install node-sass --save-dev
+npm install extract-text-webpack-plugin
+npm install webpack-merge
+npm install html-loader
+npm run start
+
+wepack-dev-server mientras estamos en enterno de desarrollo utiliza una memoria virtual y ahí guarda
+index.html y el bundle.js por es más rápida la ejecución. ahora si lo queremos los archivos
+que genera y los guarde en el disco, tenemos que instalar el plugin
+htmlwepackHarsddiskPlugin
+
+visualhunt imágenes gratuitas de calidad
+
+Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+css grid lo nuevo
+css grid areas
+
+cuando se diseña para celulares y escritorio se comienza haciendo los css para celular y luego con media query
+se hacen los cambios para la vista en escritorio
+
+web colour data paleta de colores de los principales sitios google, flickr, face, twitter
+coolors.co es el más popular
+
+mixins son módulos que se incluyen en los css
+selectores anidados son de sass
+
+parallax es un efecto
+
+mapa de google en javascript restringir por dominio el uso de nuestras claves (en nuestra cuenta tenemos las claves de la api)
+api mapa
+ingresar console.developers.google.com
+crear proyectos
+habiltar api
+google map javascript
+habilitar
+credenciales
+copiar claves
+
+api map google cuenta juanpedrososa2013@gmail.com
+clave: AIzaSyC2UJ1gYbV4tOPX29IM-PAj6al8VjX7xYs
+
+para produccion restringir clave de api por dominio
+
+
+subir a firebase
+https://firebase.google.com
+iniciar sesión con una cuenta de gmail
+npm install -g firebase-tools
+desde la terminal y/o consola
+firebase login
+firebase list
+
+añadir proyecto (la cuenta tiene un límite de proyectos)
+nombre del proyecto
+desde la terminal y/o consola
+firebase init
+sleccionar hosting
+single-page = no
+no sobreescribir html
+firebase serve  (lo incia localmente)
+firebase deploy --only hosting

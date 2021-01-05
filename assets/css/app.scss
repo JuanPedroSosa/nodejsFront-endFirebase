@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import "./modules/_variables.scss";
+@import "./modules/_mixins.scss";
+
+html,body {
+	font-family: 'Source Sans Pro', sans-serif;
+	margin: 0px;
+}
+
+img {
+	max-width: 100%;
+}
+
+figure {
+	position: relative;
+	max-height: 100%;
+	margin: 0px;
+	margin-top: $big-margin-top;
+	/* &:hover {}; & hace referencia a figure*/
+	figcaption {
+		padding: $large-padding;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 2em;
+		position: absolute;
+		width: auto;
+		bottom: 0px;
+		left: 10px;
+		letter-spacing: 5px;
+		z-index: 10; // aparece arriba
+		@include text-center;
+		color: rgba($gray, 0.5); // rgba función sass, hay litar selectores, etc
+	}
+}
+
+.btn {
+	padding: $large-padding;
+	position: relative;
+	color: $black !important;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	box-sizing: border-box; // centrar texto en el padding
+	&:before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		left: 0px;
+		bottom: 0px;
+		height: 40%;
+		z-index: -1;
+		background-color: $light-blue;
+		transition: all 0.15s ease-out;
+	}
+	&:hover::before {
+		height: 100%;
+	}
+}
+
+.full-height {
+	min-height: 100vh;
+}
+
+.grid {
+	@include full;
+	display:grid;
+	grid-template-columns: repeat(12, 1fr);
+}
+
+.menu {
+	position: fixed;
+	top: 2em;
+	right: 2em;
+	border-radius: 50%;
+	height: 60px;
+	width: 60px;
+	border: solid 1px $blue;
+	@include center-vertical-horizontal;
+	background-color: $white;
+	transition: all 0.6s ease-out;
+	transition-duration: 0.15s;
+	cursor: pointer;
+
+	&:hover {
+		background-color: $light-blue;
+	}
+	img {
+		height: 50px;
+	}
+
+}
+.menu-screen {
+	background-color: $white;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	z-index: 100;
+	top: -101vh; // manu: lo manda arriba y aparece oculto
+	@include center-vertical-horizontal;
+
+	&.active {
+		top: 0;
+	}
+
+	.close {
+		position: absolute;
+		top: 2em;
+		right: 2em;
+		img {
+			height: 45px;
+		}
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+		@include text-center;
+		position: relative;
+		margin-top: 1em;
+		transition: all 0.6s ease-out;
+		&:first-of-type {margin-top: 0px;}
+		.main {
+			display: block;
+			font-size: 2em;
+			color: $light-blue;
+		}
+		span:not(.main) {
+			color: $rose;
+			opacity: 0;
+			transition: all 0.6s ease-out;
+			transition-duration: 0.2s;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			top: 1.2em;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: $blue;
+			transition: all 0.6s ease-out;
+			transition-duration: 0.2s;
+			transform: scale(0);
+		}
+
+		&:hover .main {
+			color: $blue !important;
+		}
+		&:hover::after {
+			transform: scale(1);
+		}
+		&:hover span:not(.main) {
+			opacity: 1;
+		}
+
+	}
+
+
+}
+
+.main-text {
+	/*grid-column: 2 / 5;*/
+	grid-area: title;
+	font-weight: 200;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	h1 {
+		font-weight: inherit; // hereda del padre el valor
+		font-size: $big;
+		letter-spacing: 0.3em;
+		line-height: 1.5em;
+	}
+}
+.main-image {
+	/*
+	grid-column-start: 5;
+	grid-column-end: 12;*/
+	grid-area: image;
+}
+
+.grid-main-area {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	/*grid-template-areas: ". title title image image image image image ." pantalla escritorio*/
+	grid-template-areas: "title title title title title title title title title"
+	"image image image image image image image image image";
+	.text {
+		grid-area: title;
+		@include main-text;
+	}
+}
+
+.container {
+	grid-column: span 12; // movil que ocupe toda la pantalla
+}
+
+
+
+.cover {
+	@include absolute-cover;
+	min-height: 500px;
+	background-size: cover;
+	background-position: cover;
+
+	&.parallax {
+		background-attachment: fixed;
+		background-image:url(../../public/images/3.jpg);
+		position: relative;
+		p {
+			@include caption;
+			background-color: rgba($blue, 0.8);
+			display: block;
+			width: 100%;
+			box-sizing: border-box; // esto para que no desborde porque el width 100% + mas padding = desborde
+			left: 0px;
+			@include text-right;
+			span {
+				display:block;
+				font-size: 0.5em;
+				font-weight: 200;
+				margin-top: 6px;
+			}
+		}
+	}
+}
+
+.slider {
+	.controls {
+		text-align: right;
+		margin-bottom: 10px;
+		padding-right: 2em;
+		display: none;
+		.right-arrow, .left-arrow{
+			height: 70px;
+			transition: all 0.6s ease-out;
+			transition-duration: 0.15s;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.2;
+			}
+		}
+		.left-arrow {
+			margin-right: 1.5em;
+			transform: rotate(180deg); // -> la rota <-
+		}
+	}
+	.image {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+	}
+	header {
+		transform: translateY(100px); // en celular efecto en Y
+		background-color: $blue;
+		color: $white;
+		padding: $large-padding;
+		width: 80%;
+		box-sizing: border-box;
+		margin: 0 auto;
+		z-index: 10;
+		position: relative;
+		h2 {
+			margin: 0px;
+		}
+		.separator {
+			text-align: right;
+			padding-right: 150px;
+			position: relative;
+			color: $white;
+			&::after {
+				position: absolute;
+				content: "";
+				height: 3px;
+				width: 140px;
+				background-color: currentColor; // variable css(currentColor) hereda el color del padre
+				top:0.7em;
+				right: 0px;
+
+			}
+
+		}
+	}
+}
+
+#slider-text-content {
+	transition: all 0.6s ease-out;
+	&:hide {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+}
+
+#slider-image {
+	transition: all 0.6s ease-out;
+	&:hide {
+		opacity: 0;
+	}
+}
+
+.mission {
+	.container {
+		@include main-text;
+		figure {
+			float: right;
+			margin-left: 20px;
+		}
+		p {
+			line-height: 2em;
+			&:nth-of-type(1) { // de un conjunto que tome el primero (ej hay dos parráfos toma el primero)
+				margin-bottom: 3em;
+				position: relative;
+				&::after {
+					content: ""; // tiene que existir para que esto se ejecute
+					background-color: $blue;
+					position:  absolute;
+					bottom: -1.5em;
+					height: 8px;
+					width: 80%;
+					z-index: -1; // va detrás de la imagen o algo
+				}
+			}
+
+		}
+	}
+}
+
+#map {
+	width: 100%;
+	height: 600px;
+}
+
+.social {
+	margin-top: $big-margin-top;
+	margin-bottom: $big-margin-top;
+	@include text-center;
+	p.title {
+		font-weight: 200;
+		font-size: 2.5em;
+	}
+	a {
+		display: block;
+
+		max-width: 150px;
+		margin:  1em auto;
+	}
+}
+
+@media (min-width: 960px ) {
+	.container {
+		grid-column: 2 / 12 /*empezar en la 2 y terminar en la 12*/
+	}
+
+	.grid-main-area {
+		display: grid;
+		grid-template-columns: repeat(9, 1fr);
+		grid-template-areas: "title title title image image image image image image";
+		/*grid-template-areas: ". title title image image image image image .";*/
+
+	}
+
+	.slider {
+		align-items: center;
+		header { // css3
+			transform: translateX(100px);
+			width: 100%;
+			min-height: 150px;
+		}
+	}
+
+	.social {
+		a {
+			display: inline-block;
+			margin-top: 0px;
+			margin-right: 90px; // (u)
+			&:last-of-type() {
+				margin-right: 0px; // (u) para quede centrado al útlimo elem le pongo margen 0
+			}
+		}
+	}
+}
